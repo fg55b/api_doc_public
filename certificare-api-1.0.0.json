@@ -1,0 +1,1087 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Certificare API",
+    "description": "Welcome to the Certificare API! You can use our API to access Certificare API endpoints.",
+    "contact": {
+      "name": "API Support",
+      "email": "axl@certi.org.br"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sudo-cpc.certi.org.br/",
+      "description": "Homologation Environment"
+    },
+    {
+      "url": "https://certificare.certi.org.br/",
+      "description": "Production Environment"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Everything related with authentication and authorization"
+    },
+    {
+      "name": "Activity",
+      "description": "Everything related with activities, tasks and registers."
+    },
+    {
+      "name": "Task",
+      "description": "Everything related with tasks and registers."
+    },
+    {
+      "name": "Attachments",
+      "description": "Everything related with medias."
+    },
+    {
+      "name": "Pendency",
+      "description": "Everything related with pendencies."
+    }
+  ],
+  "paths": {
+    "/api/session/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Request access tokens",
+        "description": "Request access tokens. The 'access_token' value must be sent in the 'Authorization' header in the remaining requests, preceded by 'Bearer '",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthTokensRequest"
+              },
+              "examples": {
+                "basicRequest": {
+                  "summary": "Request access tokens",
+                  "value": {
+                    "username": "admin",
+                    "password": "admin.password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTokens"
+                },
+                "examples": {
+                  "basicRequest": {
+                    "summary": "Request access tokens",
+                    "value": {
+                      "data": {
+                        "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZMW9SREotV1I1bjh4c1hBYkE0TDdYNGJldUtUS1RTMVZpbDlQbVppLU80In0.eyJleHAiOjE2Mzk1OTI3MDYsImlhdCI6MTYzOTU4OTEwNiwianRpIjoiM2RmNTk2NTQtMjlkYy00ZmMzLTkyMzQtZjE4NTM5YzEwNGU1IiwiaXNzIjoiaHR0cHM6Ly9zdWRvLWNwYy5jZXJ0aS5vcmcuYnIva2V5Y2xvYWsvYXV0aC9yZWFsbXMvbWFzdGVyIiwiYXVkIjpbIlRlc3QtcmVhbG0iLCJhZGZzcGV0cm9icmFzLXJlYWxtIiwibWFzdGVyLXJlYWxtIiwiYWNjb3VudCJdLCJzdWIiOiI1NDc5YjE4Yy0zYzUzLTQwYzAtYjlhZC02MTUxZTczNmFkNjYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ0ZHBjIiwic2Vzc2lvbl9zdGF0ZSI6Ijk2YzYxZmE0LTE2MTUtNDNlNi04YzQ5LTI5MTk1OThkMmQ3OCIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiY3JlYXRlLXJlYWxtIiwib2ZmbGluZV9hY2Nlc3MiLCJzdXBlcmFkbWluIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7IlRlc3QtcmVhbG0iOnsicm9sZXMiOlsidmlldy1yZWFsbSIsInZpZXctaWRlbnRpdHktcHJvdmlkZXJzIiwibWFuYWdlLWlkZW50aXR5LXByb3ZpZGVycyIsImltcGVyc29uYXRpb24iLCJjcmVhdGUtY2xpZW50IiwibWFuYWdlLXVzZXJzIiwicXVlcnktcmVhbG1zIiwidmlldy1hdXRob3JpemF0aW9uIiwicXVlcnktY2xpZW50cyIsInF1ZXJ5LXVzZXJzIiwibWFuYWdlLWV2ZW50cyIsIm1hbmFnZS1yZWFsbSIsInZpZXctZXZlbnRzIiwidmlldy11c2VycyIsInZpZXctY2xpZW50cyIsIm1hbmFnZS1hdXRob3JpemF0aW9uIiwibWFuYWdlLWNsaWVudHMiLCJxdWVyeS1ncm91cHMiXX0sImFkZnNwZXRyb2JyYXMtcmVhbG0iOnsicm9sZXMiOlsidmlldy1pZGVudGl0eS1wcm92aWRlcnMiLCJ2aWV3LXJlYWxtIiwibWFuYWdlLWlkZW50aXR5LXByb3ZpZGVycyIsImltcGVyc29uYXRpb24iLCJjcmVhdGUtY2xpZW50IiwibWFuYWdlLXVzZXJzIiwicXVlcnktcmVhbG1zIiwidmlldy1hdXRob3JpemF0aW9uIiwicXVlcnktY2xpZW50cyIsInF1ZXJ5LXVzZXJzIiwibWFuYWdlLWV2ZW50cyIsIm1hbmFnZS1yZWFsbSIsInZpZXctZXZlbnRzIiwidmlldy11c2VycyIsInZpZXctY2xpZW50cyIsIm1hbmFnZS1hdXRob3JpemF0aW9uIiwibWFuYWdlLWNsaWVudHMiLCJxdWVyeS1ncm91cHMiXX0sIm1hc3Rlci1yZWFsbSI6eyJyb2xlcyI6WyJ2aWV3LWlkZW50aXR5LXByb3ZpZGVycyIsInZpZXctcmVhbG0iLCJtYW5hZ2UtaWRlbnRpdHktcHJvdmlkZXJzIiwiaW1wZXJzb25hdGlvbiIsImNyZWF0ZS1jbGllbnQiLCJtYW5hZ2UtdXNlcnMiLCJxdWVyeS1yZWFsbXMiLCJ2aWV3LWF1dGhvcml6YXRpb24iLCJxdWVyeS1jbGllbnRzIiwicXVlcnktdXNlcnMiLCJtYW5hZ2UtZXZlbnRzIiwibWFuYWdlLXJlYWxtIiwidmlldy1ldmVudHMiLCJ2aWV3LXVzZXJzIiwidmlldy1jbGllbnRzIiwibWFuYWdlLWF1dGhvcml6YXRpb24iLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIHJvbGVzIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiQWRtaW4gQWRtaW4iLCJQcm9qZWN0SWQiOlsiZGU4YmRhNDMtMWI1NC00NTA5LWI1ZWMtOGJjZTRlN2Q1M2ViIiwiMzA2Y2Y1NjQtYWJlYS00YjI2LWFhZDQtNDY2ZDVjNDQ3ZWMyIiwiOWU4ZDg5NzUtM2Y2NC00MTRkLWJiODQtMzYyNGIxNWUxZmRiIiwiOWU4ZDg5NzUtM2Y2NC00MTRkLWJiODQtMzYyNGIxNWUxZmRiIl0sInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFkbWluIiwiZmFtaWx5X25hbWUiOiJBZG1pbiIsImVtYWlsIjoibm9yZXBseS1jZXJ0aWZpY2FyZUBjZXJ0aS5vcmcuYnIifQ.hZD1HXb9VIX-pCTP_GyWju2sgx9DeHORE8Mkq6vIxqjRu0nH4liR7oGiunQV8MH8dyOtxe6-nFsW3QchPfypvI_XGHfW30oiQvt6IkDTHnOyO5jQJfjfXJovT3YSgcnOQX5y5wrUsXfnsFup1LILKhdKlTZq8NiE57DoAx-Z-xpqTGNczUsF5hHamKSIQ_L6nThO80OA0aoj0-6wfJzahesZoKOqaZRHCq4b8VNCp4ny__u9ugWg3iJc87SVAlfanzcl5RqoeSCCPFrXHvfQ0Yri53StsPrvHzMB53ck9D4Gf3OYP9j-RLN2ulkLrhRHk90s8V9fIBsJCK2G3ARWFw",
+                        "expires_in": 3600,
+                        "groups": [
+                          {
+                            "id": "47c8215f-3504-4287-9428-b35887ff14bb",
+                            "name": "Administrator",
+                            "path": "/Administrator"
+                          }
+                        ],
+                        "isAdmin": true,
+                        "isApprover": false,
+                        "refresh_expires_in": 3600,
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJlODQyNTE3Yi03MzZhLTQ5YWYtYjI4OS05NWU5YzFkYzQ5MWUifQ.eyJleHAiOjE2Mzk1OTI3MDYsImlhdCI6MTYzOTU4OTEwNiwianRpIjoiMmJmOTVkODEtOTIzNi00YmU5LTkzMjEtZWEyMTFiMTNlNzBkIiwiaXNzIjoiaHR0cHM6Ly9zdWRvLWNwYy5jZXJ0aS5vcmcuYnIva2V5Y2xvYWsvYXV0aC9yZWFsbXMvbWFzdGVyIiwiYXVkIjoiaHR0cHM6Ly9zdWRvLWNwYy5jZXJ0aS5vcmcuYnIva2V5Y2xvYWsvYXV0aC9yZWFsbXMvbWFzdGVyIiwic3ViIjoiNTQ3OWIxOGMtM2M1My00MGMwLWI5YWQtNjE1MWU3MzZhZDY2IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6InRkcGMiLCJzZXNzaW9uX3N0YXRlIjoiOTZjNjFmYTQtMTYxNS00M2U2LThjNDktMjkxOTU5OGQyZDc4Iiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIHJvbGVzIn0.VB4rv6cSSC9IYs0zP3kBIFFYSmQRdziXHsdXXKFMPFo",
+                        "scope": "email profile roles",
+                        "session_state": "96c61fa4-1615-43e6-8c49-2919598d2d78",
+                        "token_type": "Bearer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/activity": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Gets the list of activities",
+        "description": "Gets the list of activities",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Pagination size",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 1
+            }
+          },
+          {
+            "name": "element",
+            "in": "query",
+            "description": "ELEMENT",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ssop",
+            "in": "query",
+            "description": "SSOP",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityIfcJsonResultList"
+                },
+                "example": {
+                  "data": "IfcJson",
+                  "pagination": {
+                    "length": 1500,
+                    "size": 20,
+                    "page": 5
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Activity"
+        ],
+        "summary": "Send the activities, tasks and registers",
+        "description": "Send the activities, tasks and registers to update in FIC",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityIfcJsonRequestList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityResult"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": "58c8215f-3504-4287-9428-b35887ff14cc",
+                      "success": false,
+                      "message": "The activity does not exist"
+                    },
+                    {
+                      "id": "69c8215f-3504-4287-9428-b35887ff14dd",
+                      "success": true,
+                      "message": "Success"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Gets the list of tasks",
+        "description": "Gets the list of tasks",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Pagination size",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 1
+            }
+          },
+          {
+            "name": "element",
+            "in": "query",
+            "description": "ELEMENT",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ssop",
+            "in": "query",
+            "description": "SSOP",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityIfcJsonResultList"
+                },
+                "example": {
+                  "data": "IfcJson",
+                  "pagination": {
+                    "length": 1500,
+                    "size": 20,
+                    "page": 5
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Send the tasks and registers",
+        "description": "Send the tasks and registers to update in FIC",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityIfcJsonRequestList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResult"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": "58c8215f-3504-4287-9428-b35887ff14cc",
+                      "success": false,
+                      "message": "The task does not exist"
+                    },
+                    {
+                      "id": "69c8215f-3504-4287-9428-b35887ff14dd",
+                      "success": true,
+                      "message": "Success"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/{taskId}": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Gets a specific task",
+        "description": "Gets a specific task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Numeric ID of the task to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskIfcJsonResult"
+                },
+                "example": {
+                  "data": "IfcJson"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/{taskId}/tag": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Gets the element (TAG) associated with the task",
+        "description": "Gets the element (TAG) associated with the task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Numeric ID of the task to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagIfcJsonResult"
+                },
+                "example": {
+                  "data": "IfcJson"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/task/{tag}/tasks": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Gets the tasks related to a certain element (TAG)",
+        "description": "Gets the tasks related to a certain element (TAG)",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "path",
+            "description": "Name of the element (TAG)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskIfcJsonResultList"
+                },
+                "example": {
+                  "data": "IfcJson"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attachments": {
+      "post": {
+        "tags": [
+          "Attachments"
+        ],
+        "summary": "Send the media attachments",
+        "description": "Send the media attachments",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Attachments"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attachments"
+                },
+                "example": {
+                  "data": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pendency": {
+      "get": {
+        "tags": [
+          "Pendency"
+        ],
+        "summary": "Gets the list of pendencies",
+        "description": "Gets the list of pendencies",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Pagination size",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Pagination page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 1
+            }
+          },
+          {
+            "name": "element",
+            "in": "query",
+            "description": "ELEMENT",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ssop",
+            "in": "query",
+            "description": "SSOP",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendencyIfcJsonResultList"
+                },
+                "example": {
+                  "data": "IfcJson",
+                  "pagination": {
+                    "length": 1500,
+                    "size": 20,
+                    "page": 5
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized Access token is missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified resource was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error. Invalid data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuthTokensRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": false
+          },
+          "password": {
+            "type": "string",
+            "nullable": false
+          }
+        }
+      },
+      "AuthTokens": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "integer"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Group"
+            }
+          },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "isApprover": {
+            "type": "boolean"
+          },
+          "refresh_expires_in": {
+            "type": "integer"
+          },
+          "refresh_token": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "session_state": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          }
+        }
+      },
+      "Group": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": false
+          },
+          "path": {
+            "type": "string",
+            "nullable": false
+          }
+        }
+      },
+      "ActivityIfcJsonRequestList": {
+        "type": "object",
+        "description": "Represent an IfcJson object with activities and tasks. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "ActivityIfcJsonResultList": {
+        "type": "object",
+        "description": "Represent an IfcJson object with activities and tasks. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "TaskIfcJsonResult": {
+        "type": "object",
+        "description": "Represent a IfcJson object with only one tasks. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "TaskIfcJsonRequestList": {
+        "type": "object",
+        "description": "Represent an IfcJson object with only tasks. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "TaskIfcJsonResultList": {
+        "type": "object",
+        "description": "Represent an IfcJson object with only tasks. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "TagIfcJsonResult": {
+        "type": "object",
+        "description": "Represent a IfcJson object with only one element (IfcBuildingElementProxy). See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "ActivityResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "success": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TaskResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "success": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Attachments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "taskId": {
+              "type": "string"
+            },
+            "medias": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PendencyIfcJsonResultList": {
+        "type": "object",
+        "description": "Represent an IfcJson object with pendencies. See https://certificare.certi.org.br/#/ifcjson-specifications for more details."
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "not_found"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error description",
+            "example": "The requested resource not found"
+          }
+        },
+        "description": "The requested resource or path can not be found"
+      },
+      "BadRequestError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "invalid_grant"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error description",
+            "example": "Invalid user credentials"
+          }
+        },
+        "description": "Represent a bad request response"
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "invalid_data"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error description",
+            "example": "Access token expired"
+          }
+        },
+        "description": "Authentication of session is invalid or expired"
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "invalid_data"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error description",
+            "example": "Invalid entity status"
+          }
+        },
+        "description": "Given attributes are invalid for requested action"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "Requests to the API are authenticated using access tokens.\n\nOnce you have an access token it can be provided to the API as a bearer token:\n\n    curl -H 'Authorization: Bearer token' https://base.path/resource.path",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
