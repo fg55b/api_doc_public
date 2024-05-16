@@ -810,7 +810,7 @@
           {
             "name": "classification",
             "in": "query",
-            "description": "Classification for filtering pendencies.",
+            "description": "Pendency type classification for filtering pendencies.",
             "required": false,
             "style": "form",
             "explode": true,
@@ -834,12 +834,12 @@
           {
             "name": "lastUpdated",
             "in": "query",
-            "description": "Last Updated for filtering pendencies.",
+            "description": "Unix Time of the last update for filtering pendencies.",
             "required": false,
             "style": "form",
             "explode": true,
             "schema": {
-              "type": "string",
+              "type": "number",
               "nullable": true
             }
           }
