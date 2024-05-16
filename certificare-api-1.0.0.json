@@ -17,7 +17,11 @@
     {
       "url": "https://certificare.certi.org.br/",
       "description": "Production Environment"
-    }
+    },
+    {
+      "url": "http://localhost/",
+      "description": "Local Environment"
+    },
   ],
   "security": [
     {
