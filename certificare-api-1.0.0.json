@@ -786,7 +786,7 @@
           {
             "name": "element",
             "in": "query",
-            "description": "ELEMENT",
+            "description": "Element name for filtering pendencies.",
             "required": false,
             "style": "form",
             "explode": true,
@@ -796,9 +796,45 @@
             }
           },
           {
-            "name": "ssop",
+            "name": "publicId",
             "in": "query",
-            "description": "SSOP",
+            "description": "PublicId for filtering pendencies.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "classification",
+            "in": "query",
+            "description": "Classification for filtering pendencies.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status for filtering pendencies.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "lastUpdated",
+            "in": "query",
+            "description": "Last Updated for filtering pendencies.",
             "required": false,
             "style": "form",
             "explode": true,
