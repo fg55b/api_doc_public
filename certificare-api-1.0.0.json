@@ -31,7 +31,7 @@
   "tags": [
     {
       "name": "Auth",
-      "description": "Everything related with authentication and authorization"
+      "description": "Everything related with authentication and authorization."
     },
     {
       "name": "Activity",
@@ -786,7 +786,7 @@
           {
             "name": "element",
             "in": "query",
-            "description": "Element name for filtering pendencies.",
+            "description": "Element name for filtering pendencies",
             "required": false,
             "style": "form",
             "explode": true,
@@ -798,7 +798,7 @@
           {
             "name": "publicId",
             "in": "query",
-            "description": "PublicId for filtering pendencies.",
+            "description": "PublicId for filtering pendencies",
             "required": false,
             "style": "form",
             "explode": true,
@@ -810,7 +810,7 @@
           {
             "name": "classification",
             "in": "query",
-            "description": "Pendency type classification for filtering pendencies.",
+            "description": "Pendency type classification for filtering pendencies",
             "required": false,
             "style": "form",
             "explode": true,
@@ -822,7 +822,7 @@
           {
             "name": "status",
             "in": "query",
-            "description": "Status for filtering pendencies.",
+            "description": "Status for filtering pendencies",
             "required": false,
             "style": "form",
             "explode": true,
@@ -834,7 +834,7 @@
           {
             "name": "lastUpdated",
             "in": "query",
-            "description": "Unix Time of the last update for filtering pendencies.",
+            "description": "Unix Time of the last update for filtering pendencies",
             "required": false,
             "style": "form",
             "explode": true,
