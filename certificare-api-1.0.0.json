@@ -866,6 +866,18 @@
               "type": "string",
               "nullable": true
             }
+          },
+          {
+            "name": "contractId",
+            "in": "query",
+            "description": "Contract Id for filtering pendencies",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
           }
         ],
         "responses": {
